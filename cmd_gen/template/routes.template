@@ -1,0 +1,17 @@
+package router
+
+import (
+    {{range .Imports}}"{{.}}"{{end}}
+    "github.com/gin-gonic/gin"
+)
+
+func init() {
+    apiModules = append(apiModules, Add{{.ModuleToUpperCamel}}Routes)
+}
+
+func Add{{ .ModuleToUpperCamel }}Routes(e *gin.Engine) {
+    r := e.Group("{{.Prefix}}")
+    { {{range .Apis}}
+        r.{{.MethodToUpper}}("{{.Path}}", {{ $.ModuleToLowerCamel}}.{{.ApiNameToTitle}}Handler())  {{end}}
+    }
+}

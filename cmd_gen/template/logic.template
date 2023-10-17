@@ -1,0 +1,24 @@
+package {{.PackageName}}
+
+import (
+	{{range .Imports}}"{{.}}"
+    {{end}}
+
+	"github.com/gin-gonic/gin"
+)
+
+type {{.LogicName}}Logic struct {
+	ctx *gin.Context
+}
+
+func New{{.LogicName}}Logic(c *gin.Context) *{{.LogicName}}Logic {
+	return &{{.LogicName}}Logic{
+		ctx: c,
+	}
+}
+
+func (l *{{.LogicName}}Logic ) {{.LogicName}}(req *dto.{{.Req}}) (*dto.{{.Resp}}, error) {
+    // Delete this line and write the business logic
+
+	return &dto.{{.Resp}}{}, nil
+}

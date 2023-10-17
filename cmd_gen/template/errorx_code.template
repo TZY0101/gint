@@ -1,0 +1,14 @@
+package errorx
+
+const (
+	SUCCESS uint32 = 2000
+
+	PARAMS_ERROR       uint32 = 4000
+	AUTHENTICATE_ERROR uint32 = 4001 // 认证(识别访问的是谁)错误
+	AUTHORIZE_ERROR    uint32 = 4003 // 授权(赋予特定用户执行特定操作的权限)失败
+
+	SERVER_COMMON_ERROR uint32 = 5000
+	DB_ERROR            uint32 = 5001
+	SERVER_BUSY         uint32 = 5002
+	UNHANDLED_ERROR     uint32 = 5003
+)

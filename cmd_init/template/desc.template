@@ -1,0 +1,11 @@
+DTO DemoReq {
+    Id int64
+}
+
+DTO DemoResp {
+    Name string
+}
+
+APIS demo {
+    get /demo helloWorld(DemoReq) DemoResp
+}

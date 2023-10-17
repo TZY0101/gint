@@ -1,0 +1,23 @@
+dto GetInfoReq {
+   Id int64
+}
+
+dto GetInfoResp {
+   Name string
+}
+
+dto UpdateInfoReq {
+   Name string
+}
+
+dto UpdateInfoResp {
+
+}
+
+@module(
+    prefix: /api/v1
+)
+APIS user { // module
+    get /user/:id  GetInfo(GetInfoReq) GetInfoResp
+    put /user/info UpdateInfo(UpdateInfoReq) UpdateInfoResp
+}

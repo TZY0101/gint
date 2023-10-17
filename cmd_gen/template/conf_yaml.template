@@ -1,0 +1,4 @@
+name: "{{.ModName}}"
+mode: "dev"
+port: 9090
+machine_id: 1

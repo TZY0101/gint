@@ -1,0 +1,64 @@
+package ginx
+
+import (
+	{{range .Imports}}"{{.}}"
+    {{end}}
+	"github.com/gin-gonic/gin"
+)
+
+type Body struct {
+	Code uint32      `json:"code"`
+	Msg  string      `json:"msg"`
+	Data interface{} `json:"data"`
+}
+
+// Parse auto binding request arguments to struct pointer
+func Parse(c *gin.Context, obj interface{}) error {
+	// auto binding query and json paramter
+	if err := c.ShouldBind(obj); err != nil {
+		return errorx.NewParamsErr(err.Error())
+	}
+
+	// path parameter
+	if c.Params != nil {
+		if err := c.ShouldBindUri(obj); err != nil {
+			return errorx.NewParamsErr(err.Error())
+		}
+	}
+
+	return nil
+}
+
+// Response unified return response
+func Response(c *gin.Context, resp interface{}, err error) {
+	var body Body
+
+	if err != nil {
+		body = errorBody(err)
+	} else {
+		body = successBody(resp)
+	}
+
+	c.JSON(200, body)
+
+	return
+}
+
+func successBody(resp interface{}) Body {
+	return Body{Code: 200, Msg: "success", Data: resp}
+}
+
+func errorBody(err error) Body {
+	var body Body
+	if e, ok := err.(*errorx.CodeError); ok {
+		// custom err
+		body = Body{Code: e.Code, Msg: e.Msg, Data: nil}
+	} else {
+		// non-custom err
+		body = Body{Code: errorx.UNHANDLED_ERROR, Msg: errorx.ToMsg(errorx.UNHANDLED_ERROR), Data: nil}
+	}
+
+	// todo: logger recods err
+
+	return body
+}

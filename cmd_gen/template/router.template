@@ -1,0 +1,17 @@
+package router
+
+import (
+    "github.com/gin-gonic/gin"
+)
+
+var apiModules = make([]func(e *gin.Engine), 0)
+
+func InitRouter() *gin.Engine {
+	e := gin.New()
+
+	for _, fn := range apiModules {
+		fn(e)
+	}
+
+	return e
+}

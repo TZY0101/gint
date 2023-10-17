@@ -1,0 +1,20 @@
+package errorx
+
+var msgMap = map[uint32]string{
+	SUCCESS:             "success",
+	PARAMS_ERROR:        "Request params error",
+	AUTHENTICATE_ERROR:  "Authenticate failed",
+	AUTHORIZE_ERROR:     "Authorize failed",
+	SERVER_BUSY:         "Server busy",
+	DB_ERROR:            "database error",
+	SERVER_COMMON_ERROR: "Server Error",
+	UNHANDLED_ERROR:     "Unhandled error",
+}
+
+func ToMsg(code uint32) (msg string) {
+	msg, ok := msgMap[code]
+	if ok {
+		return
+	}
+	return msgMap[SERVER_BUSY]
+}

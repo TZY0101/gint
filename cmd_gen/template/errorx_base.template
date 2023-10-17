@@ -1,0 +1,57 @@
+package errorx
+
+import (
+	"fmt"
+)
+
+type CodeError struct {
+	Code uint32 `json:"code"`
+	Msg  string `json:"msg"`
+}
+
+type CodeErrorResponse struct {
+	Code uint32 `json:"code"`
+	Msg  string `json:"msg"`
+}
+
+func (e *CodeError) Error() string {
+	return fmt.Sprintf("ErrCode:%d, ErrMsg:%s", e.Code, e.Msg)
+}
+
+// NewErrCode return a code and its corresponding msg if the msg is empty
+func NewErrCode(code uint32, msg ...string) *CodeError {
+	var errMsg string
+	if len(msg) == 1 {
+		errMsg = msg[0]
+	} else if len(msg) > 1 {
+		fmt.Println("too much msg argument")
+	} else if len(msg) == 0 {
+		errMsg = ToMsg(code)
+	}
+	return &CodeError{Code: code, Msg: errMsg}
+}
+
+// NewCommonErr return common error code and msg arguments
+// Use this function for general errors other than database errors
+func NewCommonErr(msg string) *CodeError {
+	return &CodeError{Code: SERVER_COMMON_ERROR, Msg: msg}
+}
+
+// NewDataBaseErr return dao error code and msg arguments
+func NewDataBaseErr(msg string) *CodeError {
+	return &CodeError{Code: DB_ERROR, Msg: msg}
+}
+
+// NewParamsErr return params error code and msg arguments
+func NewParamsErr(msg string) *CodeError {
+	return &CodeError{Code: PARAMS_ERROR, Msg: msg}
+}
+
+// IsCustomCode determine whether the code is custom error code
+func IsCustomCode(code uint32) bool {
+	if _, ok := msgMap[code]; ok {
+		return true
+	} else {
+		return false
+	}
+}

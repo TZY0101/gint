@@ -1,0 +1,25 @@
+package {{.PackageName}}
+
+import (
+	{{range .Imports}}"{{.}}"
+	{{end}}
+	"github.com/gin-gonic/gin"
+)
+
+func {{.HandlerName}}Handler() func(c *gin.Context) {
+    return func(c *gin.Context) {
+        var req dto.{{.Req}}
+        var resp *dto.{{.Resp}}
+        var err error
+
+        if err := ginx.Parse(c, &req); err != nil {
+            ginx.Response(c, resp, err)
+            return
+        }
+
+        l := {{.PackageName}}.New{{.LogicName}}Logic(c)
+        resp, err = l.{{.LogicName}}(&req)
+
+        ginx.Response(c, resp, err)
+    }
+}

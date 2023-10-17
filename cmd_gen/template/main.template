@@ -1,0 +1,43 @@
+package main
+
+import (
+	"context"
+	config "{{.ModName}}/config"
+	"{{.ModName}}/internal/app/router"
+	"log"
+	"net/http"
+	"os"
+	"os/signal"
+	"syscall"
+	"time"
+)
+
+func main() {
+	config.Load()
+
+	r := router.InitRouter()
+
+	srv := &http.Server{Addr: ":" + config.Conf.Port, Handler: r.Handler()}
+	go start(srv)
+
+	gracefulExit(srv)
+}
+
+func start(srv *http.Server) {
+	if err := srv.ListenAndServe(); err != nil && err != http.ErrServerClosed {
+		log.Printf("%v", err)
+		os.Exit(1)
+	}
+}
+
+func gracefulExit(srv *http.Server) {
+	quit := make(chan os.Signal)
+	signal.Notify(quit, syscall.SIGINT, syscall.SIGTERM)
+	<-quit
+
+	ctx, cancel := context.WithTimeout(context.Background(), 5*time.Second)
+	defer cancel()
+	if err := srv.Shutdown(ctx); err != nil {
+		log.Fatal("Server Shutdown:", err)
+	}
+}

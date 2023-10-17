@@ -1,0 +1,6 @@
+package dto
+{{range .}}
+type {{.DtoName}} struct{ {{range .Fields}}
+    {{.Name}} {{.Type}} {{end}}
+}
+{{end}}
