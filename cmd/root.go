@@ -5,6 +5,7 @@ package cmd
 
 import (
 	"fmt"
+	"gint/internal/version"
 	"os"
 
 	"github.com/spf13/cobra"
@@ -28,6 +29,7 @@ func Execute() {
 }
 
 func init() {
+	rootCmd.Version = fmt.Sprintf("%s", version.BuildVersion)
 	rootCmd.AddCommand(initCmd)
 	rootCmd.AddCommand(genCmd)
 }
