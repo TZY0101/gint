@@ -36,7 +36,7 @@ func genApi(projDir string, desc collect.DescData) error {
 		if err := genFile(config{
 			projDir:   projDir,
 			subDir:    filepath.Join(apiDir, desc.ApiModule.Module),
-			fileName:  strings.ToLower(api.ApiName) + ".go",
+			fileName:  FirstLower(api.ApiName) + ".go",
 			isCover:   true,
 			tmplName:  "api.template",
 			embedTmpl: apiTmpl,

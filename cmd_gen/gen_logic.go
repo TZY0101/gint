@@ -34,7 +34,7 @@ func genLogic(projDir string, desc collect.DescData) error {
 		if err := genFile(config{
 			projDir:   projDir,
 			subDir:    filepath.Join(logicDir, desc.ApiModule.Module),
-			fileName:  api.LogicName + ".go",
+			fileName:  FirstLower(api.LogicName) + ".go",
 			isCover:   true,
 			tmplName:  "api.template",
 			embedTmpl: logicTmpl,
