@@ -10,7 +10,7 @@ gint是一个简单的代码生成工具，主要功能是帮助开发者快速�
 
 ## 使用
 ### 安装
-> go install github.com/TZY0101/gint  
+> go install github.com/TZY0101/gint@latest  
 > gint -v
 ### 快速开始
 #### gint init
