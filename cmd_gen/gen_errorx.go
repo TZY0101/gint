@@ -1,7 +1,7 @@
 package cmd_gen
 
 import (
-	"gint/collect"
+	"github.com/TZY0101/gint/collect"
 )
 
 func genErrorx(projDir string, desc collect.DescData) error {

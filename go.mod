@@ -1,4 +1,4 @@
-module gint
+module github.com/TZY0101/gint
 
 go 1.20
 

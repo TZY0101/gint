@@ -3,7 +3,7 @@ package cmd_gen
 import (
 	"bytes"
 	"errors"
-	"gint/util/pathx"
+	"github.com/TZY0101/gint/util/pathx"
 	"os"
 	"os/exec"
 	"path"

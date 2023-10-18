@@ -1,9 +1,9 @@
 package cmd_gen
 
 import (
-	"gint/collect"
-	"gint/util/logx"
-	"gint/util/pathx"
+	"github.com/TZY0101/gint/collect"
+	"github.com/TZY0101/gint/util/logx"
+	"github.com/TZY0101/gint/util/pathx"
 	"github.com/spf13/cobra"
 	"os"
 	"path/filepath"

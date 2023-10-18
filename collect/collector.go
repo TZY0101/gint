@@ -1,7 +1,7 @@
 package collect
 
 import (
-	desc "gint/descAntlr"
+	desc "github.com/TZY0101/gint/descAntlr"
 	"github.com/antlr4-go/antlr"
 	"github.com/jinzhu/copier"
 	"os"

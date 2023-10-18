@@ -3,7 +3,7 @@ package cmd_init
 import (
 	_ "embed"
 	"fmt"
-	"gint/cmd_gen"
+	"github.com/TZY0101/gint/cmd_gen"
 	"os"
 	"path/filepath"
 	"text/template"

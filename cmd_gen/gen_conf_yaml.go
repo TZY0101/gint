@@ -1,8 +1,8 @@
 package cmd_gen
 
 import (
-	"gint/collect"
-	"gint/util/pathx"
+	"github.com/TZY0101/gint/collect"
+	"github.com/TZY0101/gint/util/pathx"
 )
 
 func genConfYaml(projDir string, desc collect.DescData) error {
@@ -18,7 +18,7 @@ func genConfYaml(projDir string, desc collect.DescData) error {
 		isCover:   false,
 		tmplName:  "dto.template",
 		embedTmpl: confYamlTmpl,
-		data:      map[string]string{
+		data: map[string]string{
 			"ModName": modName,
 		},
 	}); err != nil {

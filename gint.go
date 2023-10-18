@@ -1,7 +1,7 @@
 package main
 
 import (
-	"gint/cmd"
+	"github.com/TZY0101/gint/cmd"
 )
 
 func main() {

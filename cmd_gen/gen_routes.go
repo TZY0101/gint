@@ -1,8 +1,8 @@
 package cmd_gen
 
 import (
-	"gint/collect"
-	"gint/util/pathx"
+	"github.com/TZY0101/gint/collect"
+	"github.com/TZY0101/gint/util/pathx"
 	"github.com/jinzhu/copier"
 	"path"
 	"strings"

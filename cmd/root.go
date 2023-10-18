@@ -5,7 +5,7 @@ package cmd
 
 import (
 	"fmt"
-	"gint/internal/version"
+	"github.com/TZY0101/gint/internal/version"
 	"os"
 
 	"github.com/spf13/cobra"

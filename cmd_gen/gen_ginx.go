@@ -1,8 +1,8 @@
 package cmd_gen
 
 import (
-	"gint/collect"
-	"gint/util/pathx"
+	"github.com/TZY0101/gint/collect"
+	"github.com/TZY0101/gint/util/pathx"
 	"path"
 )
 
@@ -19,7 +19,7 @@ func genGinx(projDir string, desc collect.DescData) error {
 		isCover:   false,
 		tmplName:  "ginx.template",
 		embedTmpl: ginxTmpl,
-		data:      map[string]interface{}{
+		data: map[string]interface{}{
 			"Imports": []string{path.Join(modName, errorxDir)},
 		},
 	}); err != nil {
